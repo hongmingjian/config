@@ -1,34 +1,6 @@
 set nocompatible
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! s:session_vim_enter()
-    if bufnr('$') == 1 && bufname('%') == '' && !&mod && getline(1, '$') == ['']
-        execute 'silent source ~/.vim/lastsession.vim'
-    else
-      let s:session_loaded = 0
-    endif
-endfunction
-
-function! s:session_vim_leave()
-  if s:session_loaded == 1
-    let sessionoptions = &sessionoptions
-    try
-        set sessionoptions-=options
-        set sessionoptions+=tabpages
-        execute 'mksession! ~/.vim/lastsession.vim'
-    finally
-        let &sessionoptions = sessionoptions
-    endtry
-  endif
-endfunction
-
-" https://gist.github.com/romainl/379904f91fa40533175dfaec4c833f2f
-function! MyHighlights() abort
-    highlight ColorColumn ctermbg=Red guibg=Red
-    highlight SignColumn ctermbg=NONE guibg=NONE
-endfunction
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype off
 set rtp+=$HOME/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -45,12 +17,10 @@ Plugin 'mhinz/vim-signify' ", { 'tag': 'legacy' }
 Plugin 'Yggdroot/indentLine'
 call vundle#end()
 filetype plugin indent on
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
+
 " Explanation about tabstop, shiftwidth, softtabstop and expandtab
-" https://arisweedler.medium.com/tab-settings-in-vim-1ea0863c5990
-"
+"   https://arisweedler.medium.com/tab-settings-in-vim-1ea0863c5990
 set tabstop=4
 set shiftwidth=4
 
@@ -58,6 +28,7 @@ set foldmethod=syntax
 set nofoldenable
 
 set mouse=a
+set wildmenu
 set number
 set ruler
 set showmatch
@@ -69,7 +40,14 @@ set history=1024
 set display+=lastline
 set colorcolumn=120
 set noswapfile
-
+set nowritebackup
+set nobackup
+set modeline
+set modelines=3
+set history=512
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8,gbk,gb18030,gb2312,ucs-bom,cp936,latin1
 syntax enable
 syntax on
 
@@ -169,6 +147,33 @@ set signcolumn=yes
 "set updatetime=1000
 
 if has("autocmd")
+    function! s:session_vim_enter()
+        if bufnr('$') == 1 && bufname('%') == '' && !&mod && getline(1, '$') == ['']
+            execute 'silent source ~/.vim/lastsession.vim'
+        else
+           let s:session_loaded = 0
+        endif
+    endfunction
+
+    function! s:session_vim_leave()
+        if s:session_loaded == 1
+            let sessionoptions = &sessionoptions
+            try
+                set sessionoptions-=options
+                set sessionoptions+=tabpages
+                execute 'mksession! ~/.vim/lastsession.vim'
+            finally
+                let &sessionoptions = sessionoptions
+            endtry
+        endif
+    endfunction
+
+    " https://gist.github.com/romainl/379904f91fa40533175dfaec4c833f2f
+    function! MyHighlights() abort
+        highlight ColorColumn ctermbg=Red guibg=Red
+        highlight SignColumn ctermbg=NONE guibg=NONE
+    endfunction
+
     autocmd FileType make   set noexpandtab
     autocmd FileType python set expandtab foldmethod=indent
 
@@ -191,16 +196,47 @@ if has("autocmd")
     endif
 endif
 
-if has("gui_running")
-    "set guioptions-=m
-    "set guioptions-=T
-    set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 12
+" Platform specific
+if (has("win32"))
+	set guifont=Consolas:h12:cANSI
+   	set guifontwide=NSimsun:h12
 
-    "highlight ColorColumn guibg=DimGray
-else
-    if &term == 'xterm' || &term == 'screen'
-        set t_Co=256
+    if (has("gui_running"))
+        set termencoding=utf-8
+        set langmenu=zh_CN.UTF-8
+
+        source $VIMRUNTIME/delmenu.vim
+        source $VIMRUNTIME/menu.vim
+
+        language message zh_CN.UTF-8
     endif
 
-    colorscheme industry
+"	let g:slimv_swank_cmd='!start "C:\Program Files\SBCL\sbcl.exe" --load "C:\Users\hmj\vimfiles\slime\start-swank.lisp"'
+elseif (has("win32unix"))
+    set termencoding=gbk
+elseif (has("macunix"))
+	set guifont=DejaVuSansMonoForPowerline:h12
+
+	if has("python3_dynamic")
+		set pythonthreedll=/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/Current/Python3
+		set pythonthreehome=/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/Current
+	endif
+
+"    let g:slimv_swank_cmd = '!osascript -e "tell application \"Terminal\" to do script \"sbcl --load ~/.vim/bundle/slimv/slime/start-swank.lisp\""'
+else
+    if has("gui_running")
+        "set guioptions-=m
+        "set guioptions-=T
+        set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 12
+    
+        "highlight ColorColumn guibg=DimGray
+    else
+        if &term == 'xterm' || &term == 'screen'
+            set t_Co=256
+        endif
+    
+        colorscheme industry
+    endif
+
+"	let g:slimv_swank_cmd = '!xterm -e sbcl --load $HOME/.vim/bundle/slimv/slime/start-swank.lisp &'
 endif
