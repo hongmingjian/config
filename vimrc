@@ -50,6 +50,9 @@ set fileencoding=utf-8
 set fileencodings=utf-8,gbk,gb18030,gb2312,ucs-bom,cp936,latin1
 syntax enable
 syntax on
+if has("gui_running")
+	set cursorline
+endif
 
 let mapleader = "\<Space>"
 
@@ -215,12 +218,21 @@ if (has("win32"))
 elseif (has("win32unix"))
     set termencoding=gbk
 elseif (has("macunix"))
-	set guifont=DejaVuSansMonoForPowerline:h12
+	set guifont=DejaVuSansMonoForPowerline:h14
+
+	let s:theme = system('defaults read -g AppleInterfaceStyle >/dev/null 2>&1')
+	if v:shell_error
+		"
+	else
+		"
+	endif
 
 	if has("python3_dynamic")
 		set pythonthreedll=/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/Current/Python3
 		set pythonthreehome=/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/Current
 	endif
+
+    colorscheme industry
 
 "    let g:slimv_swank_cmd = '!osascript -e "tell application \"Terminal\" to do script \"sbcl --load ~/.vim/bundle/slimv/slime/start-swank.lisp\""'
 else
