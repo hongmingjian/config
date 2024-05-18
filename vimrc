@@ -15,6 +15,7 @@ Plugin 'preservim/tagbar'
 Plugin 'thinca/vim-localrc'
 Plugin 'mhinz/vim-signify' ", { 'tag': 'legacy' }
 Plugin 'Yggdroot/indentLine'
+Plugin 'kovisoft/slimv'
 call vundle#end()
 filetype plugin indent on
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -248,5 +249,5 @@ else
 
     colorscheme industry
 
-"	let g:slimv_swank_cmd = '!xterm -e sbcl --load $HOME/.vim/bundle/slimv/slime/start-swank.lisp &'
+	let g:slimv_swank_cmd = '! tmux new-window -d -n REPL "sbcl --load $HOME/.vim/bundle/slimv/slime/start-swank.lisp"'
 endif
