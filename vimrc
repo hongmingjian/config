@@ -240,15 +240,13 @@ else
         "set guioptions-=m
         "set guioptions-=T
         set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 12
-    
-        "highlight ColorColumn guibg=DimGray
     else
         if &term == 'xterm' || &term == 'screen'
             set t_Co=256
         endif
-    
-        colorscheme industry
     endif
+
+    colorscheme industry
 
 "	let g:slimv_swank_cmd = '!xterm -e sbcl --load $HOME/.vim/bundle/slimv/slime/start-swank.lisp &'
 endif
