@@ -234,8 +234,6 @@ elseif (has("macunix"))
 	endif
 
     colorscheme industry
-
-"    let g:slimv_swank_cmd = '!osascript -e "tell application \"Terminal\" to do script \"sbcl --load ~/.vim/bundle/slimv/slime/start-swank.lisp\""'
 else
     if has("gui_running")
         "set guioptions-=m
@@ -248,6 +246,4 @@ else
     endif
 
     colorscheme industry
-
-	let g:slimv_swank_cmd = '! tmux new-window -d -n REPL "sbcl --load $HOME/.vim/bundle/slimv/slime/start-swank.lisp"'
 endif
