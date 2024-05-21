@@ -150,6 +150,10 @@ let g:airline#extensions#tabline#buffer_nr_format='%s:'
 set signcolumn=yes
 "set updatetime=1000
 
+" config Slimv
+let g:slimv_repl_split=0
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("autocmd")
     function! s:session_vim_enter()
         if bufnr('$') == 1 && bufname('%') == '' && !&mod && getline(1, '$') == ['']
