@@ -122,7 +122,7 @@ endif
 
 " config fzf
 nnoremap <silent> <leader><space> :Files<CR>
-nnoremap <silent> <leader>/ :Rg<CR>
+nnoremap <silent> <leader>/ :Ag<CR>
 nnoremap <silent> <leader>h :History<CR>
 
 " config ycm
