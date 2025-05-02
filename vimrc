@@ -55,6 +55,9 @@ if has("gui_running")
 	set cursorline
 endif
 
+" Disable LaTeX symbol conversion
+let g:tex_conceal = ""
+
 let mapleader = "\<Space>"
 
 " Fix Ctrl+Arrows
