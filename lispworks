@@ -1,17 +1,19 @@
 ;;;;
 ;;;; vim: filetype=lisp
 ;;;;
+;;;; This is the $HOME/.lispworks
+;;;;
 
 ;;; The following lines added by ql:add-to-init-file:
 #-quicklisp
-(let ((quicklisp-init (merge-pathnames "Z:/hmj/.lisp/quicklisp/setup.lisp" (user-homedir-pathname))))
+(let ((quicklisp-init (pathname "Z:/hmj/.lisp/quicklisp/setup.lisp")))
   (when (probe-file quicklisp-init)
     (load quicklisp-init)))
 
 ;;; Create swank server
 ;;; Set the following variable in the Slimv before connecting to the server
 ;;;        let g:swank_host = '192.168.26.131'
-(load "Z:/hmj/.vim/bundle/slimv/slime/swank-loader.lisp")
+(load (pathname "Z:/hmj/.vim/bundle/slimv/slime/swank-loader.lisp"))
 (swank-loader:init)
 (define-action "Initialize LispWorks Tools"
                "Create swank server"
