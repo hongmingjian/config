@@ -1,0 +1,252 @@
+function FindProxyForURL(url, host)
+{
+	host = host.toLowerCase();
+
+	// Exceptions
+	if (
+		dnsDomainIs(host, ".cn") ||
+		dnsDomainIs(host, ".aliapp.org") ||
+
+		false)
+		return "DIRECT";
+
+	// Common rules
+	if (
+		//true || // shortcut for DEBUG
+
+		// Top level domains
+		dnsDomainIs(host, ".org") ||
+		dnsDomainIs(host, ".co") ||
+		dnsDomainIs(host, ".gov") ||
+		dnsDomainIs(host, ".us") ||
+		dnsDomainIs(host, ".mil") ||
+		dnsDomainIs(host, ".au") ||
+		dnsDomainIs(host, ".tw") ||
+		dnsDomainIs(host, ".sg") ||
+		dnsDomainIs(host, ".uk") ||
+		dnsDomainIs(host, ".eu") ||
+
+		dnsDomainIs(host, ".io") ||
+		dnsDomainIs(host, ".ai") ||
+		dnsDomainIs(host, ".gg") ||
+		dnsDomainIs(host, ".tv") ||
+		dnsDomainIs(host, ".dj") ||
+		dnsDomainIs(host, ".fm") ||
+		dnsDomainIs(host, ".ly") ||
+		dnsDomainIs(host, ".it") ||
+		dnsDomainIs(host, ".me") ||
+		dnsDomainIs(host, ".vc") ||
+		dnsDomainIs(host, ".gs") ||
+		dnsDomainIs(host, ".bz") ||
+		dnsDomainIs(host, ".cc") ||
+		dnsDomainIs(host, ".im") ||
+		dnsDomainIs(host, ".to") ||
+
+		dnsDomainIs(host, ".news") ||
+		dnsDomainIs(host, ".wiki") ||
+
+		// DNS
+		host.match(/(\.|^)akadns\.net$/) ||
+		host.match(/(\.|^)cloudflare-dns\.com$/) ||
+
+		// Google
+		host.match(/^g\.co$/) ||
+		host.match(/^goo\.gl$/) ||
+		host.match(/^goo\.gle$/) ||
+		host.match(/(\.|^)google\./) ||
+		dnsDomainIs(host, ".google") ||
+		host.match(/(\.|^)gmail\.com$/) ||
+		host.match(/(\.|^)blogspot\./) ||
+		host.match(/(\.|^)blogger\.com$/) ||
+		host.match(/(\.|^)youtube\.com$/) ||
+		dnsDomainIs(host, ".youtube-nocookie.com") ||
+		host.match(/^youtu\.be$/) ||
+		dnsDomainIs(host, ".ytimg.com") ||
+		dnsDomainIs(host, ".appspot.com") ||
+		dnsDomainIs(host, ".ggpht.com") ||
+		host.match(/(\.|^)gstatic\./) ||
+		dnsDomainIs(host, ".googlemail.com") ||
+		dnsDomainIs(host, ".googlelabs.com") ||
+		dnsDomainIs(host, ".googleapis.com") ||
+		dnsDomainIs(host, ".googlecode.com") ||
+		dnsDomainIs(host, ".googleblog.com") ||
+		dnsDomainIs(host, ".googlesource.com") ||
+		dnsDomainIs(host, ".googledrive.com") ||
+		dnsDomainIs(host, ".googlepages.com") ||
+		dnsDomainIs(host, ".googlevideo.com") ||
+		dnsDomainIs(host, ".googlegroups.com") ||
+		dnsDomainIs(host, ".googletagservices.com") ||
+		dnsDomainIs(host, ".googleusercontent.com") ||
+		dnsDomainIs(host, ".googlesyndication.com") ||
+		dnsDomainIs(host, ".google-analytics.com") ||
+		dnsDomainIs(host, ".googleadservices.com") ||
+		dnsDomainIs(host, ".googlemashups.com") ||
+		dnsDomainIs(host, ".googlewave.com") ||
+		dnsDomainIs(host, ".googlehosted.com") ||
+		dnsDomainIs(host, ".googleartproject.com") ||
+		dnsDomainIs(host, ".googleoptimize.com") ||
+		host.match(/(\.|^)feedburner\.com$/) ||
+		host.match(/(\.|^)doubleclick\./) ||
+		dnsDomainIs(host, ".gvt0.com") ||
+		dnsDomainIs(host, ".gvt1.com") ||
+		dnsDomainIs(host, ".gvt2.com") ||
+		dnsDomainIs(host, ".gvt3.com") ||
+		host.match(/(\.|^)android\.com$/) ||
+		host.match(/(\.|^)chrome\.com$/) ||
+		dnsDomainIs(host, ".chromeexperiments.com") ||
+		dnsDomainIs(host, ".creativelab5.com") ||
+		dnsDomainIs(host, ".agoogleaday.com") ||
+		dnsDomainIs(host, ".withgoogle.com") ||
+		dnsDomainIs(host, ".thinkwithgoogle.com") ||
+		host.match(/(\.|^)recaptcha\.net$/) ||
+		host.match(/(\.|^)pki\.goog$/) ||
+		dnsDomainIs(host, ".tiltbrush.com") ||
+		host.match(/(\.|^)waze\.com$/) ||
+		dnsDomainIs(host, ".solveforx.com") ||
+		dnsDomainIs(host, ".firebaseapp.com") ||
+		host.match(/(\.|^)colab\./) ||
+
+		// X a.k.a. Twitter
+		host.match(/(\.|^)x\.com$/) ||
+		host.match(/^t\.co$/) ||
+		host.match(/(\.|^)twitter\.com$/) ||
+		dnsDomainIs(host, ".twimg.com") ||
+		dnsDomainIs(host, ".ads-twitter.com") ||
+		dnsDomainIs(host, ".pscp.tv") ||
+
+		// Yahoo!
+		host.match(/(\.|^)yahoo\./) ||
+		host.match(/(\.|^)ymail\.com$/) ||
+		dnsDomainIs(host, ".yimg.com") ||
+		dnsDomainIs(host, ".yahooapis.com") ||
+		dnsDomainIs(host, ".yahoodns.net") ||
+		dnsDomainIs(host, ".yahoosandbox.com") ||
+		dnsDomainIs(host, ".yusercontent.com") ||
+		host.match(/(\.|^)flickr\.com$/) ||
+		dnsDomainIs(host, ".staticflickr.com") ||
+		host.match(/(\.|^)flurry\.com$/) ||
+		host.match(/(\.|^)oath\.com$/) ||
+
+		// Meta
+		host.match(/(\.|^)facebook\./) ||
+		dnsDomainIs(host, ".fbcdn.net") ||
+		host.match(/(\.|^)fb\.com$/) ||
+		dnsDomainIs(host, ".thefacebook.com") ||
+		dnsDomainIs(host, ".fbsbx.com") ||
+		host.match(/(\.|^)instagram\.com$/) ||
+		dnsDomainIs(host, ".cdninstagram.com") ||
+		host.match(/^instagr\.am$/) ||
+		host.match(/(\.|^)whatsapp\./) ||
+		host.match(/(\.|^)messenger\.com$/) ||
+
+		// Apple
+		dnsDomainIs(host, ".apple") ||
+		host.match(/(\.|^)apple-dns\.net$/) ||
+
+		// News
+		host.match(/^nyti\.ms$/) ||
+		host.match(/(\.|^)nytimes\.com$/) ||
+		dnsDomainIs(host, ".nyt.com") ||
+		dnsDomainIs(host, ".nytco.com") ||
+		dnsDomainIs(host, ".nytcn.com") ||
+		dnsDomainIs(host, ".nytlog.com") ||
+		dnsDomainIs(host, ".nytstyle.com") ||
+		dnsDomainIs(host, ".nytmediakit.com") ||
+		host.match(/(\.|^)tmagazine\.com$/) ||
+		host.match(/^dw\.de$/) ||
+		host.match(/(\.|^)dw\.com$/) ||
+		host.match(/(\.|^)bbc\.com$/) ||
+		host.match(/(\.|^)bbc\.co\.uk$/) ||
+		dnsDomainIs(host, ".bbcmedia.co.uk") ||
+		dnsDomainIs(host, ".bbc.net.uk") ||
+		dnsDomainIs(host, ".bbcimg.co.uk") ||
+		dnsDomainIs(host, ".bbci.co.uk") ||
+		dnsDomainIs(host, ".bbcchinese.com") ||
+		host.match(/^bbc\.in$/) ||
+		host.match(/^bbchat\.tv$/) ||
+		host.match(/(\.|^)rfi\.fr$/) ||
+		host.match(/^rfi\.my$/) ||
+		dnsDomainIs(host, ".forbes.com") ||
+		dnsDomainIs(host, ".afr.com") ||
+		host.match(/(\.|^)bloomberg\.com$/) ||
+		host.match(/(\.|^)businessweek\.com$/) ||
+		host.match(/(\.|^)businessinsider\.com$/) ||
+		host.match(/(\.|^)wsj\./) ||
+		host.match(/(\.|^)cnn\./) ||
+		host.match(/(\.|^)reuters\.com$/) ||
+		host.match(/(\.|^)rfachina\.com$/) ||
+		host.match(/(\.|^)washingtonpost\.com$/) ||
+		host.match(/(\.|^)washpost\./) ||
+		host.match(/(\.|^)voanews\.com$/) ||
+		host.match(/(\.|^)voachinese\.com$/) ||
+		host.match(/^n\.pr$/) ||
+		host.match(/(\.|^)npr\./) ||
+		host.match(/(\.|^)nprapps\./) ||
+		host.match(/^ti\.me$/) ||
+		host.match(/(\.|^)time\.com$/) ||
+		dnsDomainIs(host, ".timeinc.net") ||
+		host.match(/(\.|^)ft\.com$/) ||
+		host.match(/(\.|^)ftchinese\.com$/) ||
+		host.match(/(\.|^)economist\.com$/) ||
+		host.match(/(\.|^)econ\.st$/) ||
+		host.match(/(\.|^)theguardian\.com$/) ||
+		host.match(/(\.|^)theatlantic\.com$/) ||
+		host.match(/(\.|^)foreignaffairs\.com$/) ||
+		host.match(/^sc\.mp$/) ||
+		host.match(/(\.|^)scmp\.com$/) ||
+		host.match(/(\.|^)nikkei\.com$/) ||
+
+		// Tools
+		host.match(/(\.|^)duckduckgo\./) ||
+		host.match(/(\.|^)mozilla\./) ||
+		host.match(/(\.|^)firefox\./) ||
+		host.match(/(\.|^)github\./) ||
+		dnsDomainIs(host, ".githubusercontent.com") ||
+		dnsDomainIs(host, ".githubassets.com") ||
+		dnsDomainIs(host, ".githubapp.com") ||
+		host.match(/(\.|^)wordpress\./) ||
+		host.match(/(\.|^)wp\.com$/) ||
+		host.match(/(\.|^)gravatar\.com$/) ||
+		host.match(/(\.|^)dropbox\.com$/) ||
+		dnsDomainIs(host, ".dropboxusercontent.com") ||
+		dnsDomainIs(host, ".dropboxstatic.com") ||
+		host.match(/(\.|^)box\.com$/) ||
+		host.match(/(\.|^)pastebin\.com$/) ||
+		host.match(/(\.|^)imgur\.com$/) ||
+		host.match(/(\.|^)vimeo\.com$/) ||
+		dnsDomainIs(host, ".vimeocdn.com") ||
+		host.match(/(\.|^)slideshare\.net$/) ||
+		host.match(/(\.|^)godaddy\.com$/) ||
+		host.match(/(\.|^)digicert\.com$/) ||
+		dnsDomainIs(host, ".substack.com") ||
+ 		host.match(/(\.|^)openai\.com$/) ||
+ 		host.match(/(\.|^)chatgpt\.com$/) ||
+		dnsDomainIs(host, ".sstatic.net") ||
+		host.match(/(\.|^)z-lib\./) ||
+		host.match(/(\.|^)z-library\./) ||
+		host.match(/(\.|^)cdn-zlib\./) ||
+		host.match(/(\.|^)reddit\.com$/) ||
+ 		dnsDomainIs(host, ".redditmedia.com") ||
+ 		dnsDomainIs(host, ".redditlist.com") ||
+ 		dnsDomainIs(host, ".redditstatic.com") ||
+ 		host.match(/^redd\.it$/) ||
+		host.match(/(\.|^)quora\.com$/) ||
+ 		dnsDomainIs(host, ".quoracdn.net") ||
+		dnsDomainIs(host, "ycombinator.com") ||
+ 		host.match(/(\.|^)medium\.com$/) ||
+		host.match(/(\.|^)ted\.com$/) ||
+ 		dnsDomainIs(host, ".tedcdn.com") ||
+		host.match(/(\.|^)chinadigitaltimes\.net$/) ||
+ 		host.match(/(\.|^)v2ex\.com$/) ||
+
+		// Privoxy
+ 		host.match(/^p\.p$/) ||
+
+ 		false)
+ 		return "PROXY 192.168.1.1:8118";
+	return "DIRECT";
+}
+
+//
+// vim: set ft=javascript:
+//
