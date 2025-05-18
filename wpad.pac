@@ -232,7 +232,7 @@ function FindProxyForURL(url, host)
  		host.match(/^redd\.it$/) ||
 		host.match(/(\.|^)quora\.com$/) ||
  		dnsDomainIs(host, ".quoracdn.net") ||
-		dnsDomainIs(host, "ycombinator.com") ||
+		dnsDomainIs(host, ".ycombinator.com") ||
  		host.match(/(\.|^)medium\.com$/) ||
 		host.match(/(\.|^)ted\.com$/) ||
  		dnsDomainIs(host, ".tedcdn.com") ||
