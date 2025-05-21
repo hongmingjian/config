@@ -5,7 +5,7 @@ function FindProxyForURL(url, host)
 	// Exceptions
 	if (
 		dnsDomainIs(host, ".cn") ||
-		dnsDomainIs(host, ".aliapp.org") ||
+		host.match(/(\.|^)aliapp\.org$/) ||
 
 		false)
 		return "DIRECT";
@@ -18,8 +18,8 @@ function FindProxyForURL(url, host)
 		dnsDomainIs(host, ".org") ||
 		dnsDomainIs(host, ".co") ||
 		dnsDomainIs(host, ".gov") ||
-		dnsDomainIs(host, ".us") ||
 		dnsDomainIs(host, ".mil") ||
+		dnsDomainIs(host, ".us") ||
 		dnsDomainIs(host, ".au") ||
 		dnsDomainIs(host, ".tw") ||
 		dnsDomainIs(host, ".sg") ||
@@ -139,6 +139,17 @@ function FindProxyForURL(url, host)
 		host.match(/(\.|^)whatsapp\./) ||
 		host.match(/(\.|^)messenger\.com$/) ||
 
+		// Amazon
+		host.match(/(\.|^)amazon\./) ||
+		dnsDomainIs(host, ".amazonaws.com") ||
+		dnsDomainIs(host, ".siege-amazon.com") ||
+		dnsDomainIs(host, ".media-amazon.com") ||
+		dnsDomainIs(host, ".associates-amazon.com") ||
+		dnsDomainIs(host, ".ssl-images-amazon.com") ||
+		dnsDomainIs(host, ".amazon-adsystem.com") ||
+		dnsDomainIs(host, ".amazontrust.com") ||
+		host.match(/^amzn\.asia$/)  ||
+
 		// Apple
 		dnsDomainIs(host, ".apple") ||
 		host.match(/(\.|^)apple-dns\.net$/) ||
@@ -225,6 +236,7 @@ function FindProxyForURL(url, host)
 		host.match(/(\.|^)z-lib\./) ||
 		host.match(/(\.|^)z-library\./) ||
 		host.match(/(\.|^)cdn-zlib\./) ||
+		host.match(/(\.|^)go-to-library\./) ||
 		host.match(/(\.|^)reddit\.com$/) ||
  		dnsDomainIs(host, ".redditmedia.com") ||
  		dnsDomainIs(host, ".redditlist.com") ||
