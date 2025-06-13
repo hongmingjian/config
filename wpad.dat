@@ -246,7 +246,7 @@ function FindProxyForURL(url, host)
  		dnsDomainIs(host, ".redditmedia.com") ||
  		dnsDomainIs(host, ".redditlist.com") ||
  		dnsDomainIs(host, ".redditstatic.com") ||
- 		host.match(/^redd\.it$/) ||
+		host.match(/(\.|^)redd\.it$/) ||
 		host.match(/(\.|^)quora\.com$/) ||
  		dnsDomainIs(host, ".quoracdn.net") ||
 		dnsDomainIs(host, ".ycombinator.com") ||
