@@ -99,7 +99,7 @@ function FindProxyForURL(url, host)
 		dnsDomainIs(host, ".withgoogle.com") ||
 		dnsDomainIs(host, ".thinkwithgoogle.com") ||
 		host.match(/(\.|^)recaptcha\.net$/) ||
-		host.match(/(\.|^)pki\.goog$/) ||
+		dnsDomainIs(host, ".goog") ||
 		dnsDomainIs(host, ".tiltbrush.com") ||
 		host.match(/(\.|^)waze\.com$/) ||
 		dnsDomainIs(host, ".solveforx.com") ||
