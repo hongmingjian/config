@@ -24,6 +24,7 @@ function FindProxyForURL(url, host)
 		dnsDomainIs(host, ".tw") ||
 		dnsDomainIs(host, ".sg") ||
 		dnsDomainIs(host, ".uk") ||
+		dnsDomainIs(host, ".ca") ||
 		dnsDomainIs(host, ".eu") ||
 
 		dnsDomainIs(host, ".io") ||
@@ -41,6 +42,7 @@ function FindProxyForURL(url, host)
 		dnsDomainIs(host, ".cc") ||
 		dnsDomainIs(host, ".im") ||
 		dnsDomainIs(host, ".to") ||
+		dnsDomainIs(host, ".is") ||
 
 		dnsDomainIs(host, ".news") ||
 		dnsDomainIs(host, ".wiki") ||
