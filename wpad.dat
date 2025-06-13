@@ -58,6 +58,7 @@ function FindProxyForURL(url, host)
 		host.match(/(\.|^)gmail\.com$/) ||
 		host.match(/(\.|^)blogspot\./) ||
 		host.match(/(\.|^)blogger\.com$/) ||
+		dnsDomainIs(host, ".blogblog.com") ||
 		host.match(/(\.|^)youtube\.com$/) ||
 		dnsDomainIs(host, ".youtube-nocookie.com") ||
 		host.match(/^youtu\.be$/) ||
