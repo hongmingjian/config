@@ -47,9 +47,11 @@ function FindProxyForURL(url, host)
 		dnsDomainIs(host, ".news") ||
 		dnsDomainIs(host, ".wiki") ||
 
-		// DNS
+		// CDN
 		host.match(/(\.|^)akadns\.net$/) ||
 		host.match(/(\.|^)cloudflare-dns\.com$/) ||
+		dnsDomainIs(host, ".b-cdn.net") ||
+		dnsDomainIs(host, ".bootstrapcdn.com") ||
 
 		// Google
 		host.match(/^g\.co$/) ||
@@ -129,6 +131,7 @@ function FindProxyForURL(url, host)
 		dnsDomainIs(host, ".staticflickr.com") ||
 		host.match(/(\.|^)flurry\.com$/) ||
 		host.match(/(\.|^)oath\.com$/) ||
+		dnsDomainIs(host, ".tumblr.com") ||
 
 		// Meta
 		host.match(/(\.|^)facebook\./) ||
@@ -257,6 +260,7 @@ function FindProxyForURL(url, host)
  		dnsDomainIs(host, ".tedcdn.com") ||
 		host.match(/(\.|^)chinadigitaltimes\.net$/) ||
  		host.match(/(\.|^)v2ex\.com$/) ||
+		dnsDomainIs(host, ".pinterest.com") ||
 
 		// Privoxy
  		host.match(/^p\.p$/) ||
