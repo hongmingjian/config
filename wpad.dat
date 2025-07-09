@@ -220,6 +220,7 @@ function FindProxyForURL(url, host)
 		host.match(/^sc\.mp$/) ||
 		host.match(/(\.|^)scmp\.com$/) ||
 		host.match(/(\.|^)nikkei\.com$/) ||
+		dnsDomainIs(host, ".hk01.com") ||
 
 		// Tools
 		host.match(/(\.|^)duckduckgo\./) ||
