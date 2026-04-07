@@ -1,5 +1,11 @@
 function FindProxyForURL(url, host)
 {
+	var china = "DIRECT";
+	var world = "PROXY 192.168.1.1:8118";
+
+	// for DEBUG
+ 	//china = "PROXY 192.168.1.1:8228";
+
 	host = host.toLowerCase();
 	host = "." + host;
 
@@ -8,12 +14,10 @@ function FindProxyForURL(url, host)
 		dnsDomainIs(host, ".aliapp.org") ||
 
 		false)
-		return "DIRECT";
+		return china;
 
 	// Common rules
 	if (
-		//true || // shortcut for DEBUG
-
 		// Top level domains
 		dnsDomainIs(host, ".org") ||
 		dnsDomainIs(host, ".co") ||
@@ -274,8 +278,8 @@ function FindProxyForURL(url, host)
  		dnsDomainIs(host, ".p.p") ||
 
  		false)
- 		return "PROXY 192.168.1.1:8118";
-	return "DIRECT";
+ 		return world;
+	return china;
 }
 
 //
