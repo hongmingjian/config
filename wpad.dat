@@ -1,38 +1,40 @@
 function FindProxyForURL(url, host)
 {
-	var china = "DIRECT";
-	var world = "PROXY 192.168.1.1:8118";
+	var direct = "DIRECT";
+	var tunnel = "PROXY 192.168.1.1:8118";
 
 	// for DEBUG
- 	//china = "PROXY 192.168.1.1:8228";
+	//direct = "PROXY 192.168.1.1:8228";
 
 	host = host.toLowerCase();
 	host = "." + host;
 
-	// Exceptions
+	// Shortcuts
 	if (
+		dnsDomainIs(host, ".cn") ||
 		dnsDomainIs(host, ".aliapp.org") ||
 
 		false)
-		return china;
+		return direct;
 
 	// Common rules
 	if (
 		// Top level domains
 		dnsDomainIs(host, ".org") ||
-		dnsDomainIs(host, ".co") ||
 		dnsDomainIs(host, ".gov") ||
 		dnsDomainIs(host, ".mil") ||
 		dnsDomainIs(host, ".us") ||
-		dnsDomainIs(host, ".au") ||
-		dnsDomainIs(host, ".tw") ||
-		dnsDomainIs(host, ".sg") ||
 		dnsDomainIs(host, ".uk") ||
 		dnsDomainIs(host, ".ca") ||
+		dnsDomainIs(host, ".au") ||
+		dnsDomainIs(host, ".jp") ||
+		dnsDomainIs(host, ".sg") ||
+		dnsDomainIs(host, ".tw") ||
 		dnsDomainIs(host, ".eu") ||
 		dnsDomainIs(host, ".ru") ||
 		dnsDomainIs(host, ".sk") ||
 
+		dnsDomainIs(host, ".co") ||
 		dnsDomainIs(host, ".io") ||
 		dnsDomainIs(host, ".ai") ||
 		dnsDomainIs(host, ".gg") ||
@@ -63,6 +65,7 @@ function FindProxyForURL(url, host)
 		dnsDomainIs(host, ".cloudflare-dns.com") ||
 		dnsDomainIs(host, ".b-cdn.net") ||
 		dnsDomainIs(host, ".bootstrapcdn.com") ||
+		dnsDomainIs(host, ".dns-finder.com") ||
 
 		// Google
 		dnsDomainIs(host, ".g.co") ||
@@ -138,7 +141,7 @@ function FindProxyForURL(url, host)
 		// Yahoo!
 		host.match(/\.yahoo\./) ||
 		dnsDomainIs(host, ".ymail.com") ||
-		dnsDomainIs(host, ".yimg.com") ||
+		host.match(/\.yimg\./) ||
 		dnsDomainIs(host, ".yahooapis.com") ||
 		dnsDomainIs(host, ".yahoodns.net") ||
 		dnsDomainIs(host, ".yahoosandbox.com") ||
@@ -176,9 +179,12 @@ function FindProxyForURL(url, host)
 		// Apple
 		dnsDomainIs(host, ".apple") ||
 		dnsDomainIs(host, ".apple-dns.net") ||
+		dnsDomainIs(host, ".cdn-apple.com") ||
 
 		// Microsoft
 		dnsDomainIs(host, ".live.com") ||
+		dnsDomainIs(host, ".live.net") ||
+		dnsDomainIs(host, ".onedrive.com") ||
 		host.match(/\.linkedin\./) ||
 		host.match(/\.github\./) ||
 		dnsDomainIs(host, ".githubusercontent.com") ||
@@ -283,14 +289,13 @@ function FindProxyForURL(url, host)
  		dnsDomainIs(host, ".v2ex.com") ||
 		dnsDomainIs(host, ".pinterest.com") ||
  		dnsDomainIs(host, ".feedblitz.com") ||
- 		dnsDomainIs(host, ".auth0.com") ||
 
 		// Privoxy
  		dnsDomainIs(host, ".p.p") ||
 
  		false)
- 		return world;
-	return china;
+ 		return tunnel;
+	return direct;
 }
 
 //
