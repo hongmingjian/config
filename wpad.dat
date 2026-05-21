@@ -55,6 +55,8 @@ function FindProxyForURL(url, host)
 		dnsDomainIs(host, ".to") ||
 		dnsDomainIs(host, ".is") ||
 
+		dnsDomainIs(host, ".asia") ||
+		dnsDomainIs(host, ".global") ||
 		dnsDomainIs(host, ".news") ||
 		dnsDomainIs(host, ".wiki") ||
 		dnsDomainIs(host, ".media") ||
@@ -157,6 +159,8 @@ function FindProxyForURL(url, host)
 		dnsDomainIs(host, ".aol.com") ||
 
 		// Meta
+		dnsDomainIs(host, ".meta.com") ||
+		dnsDomainIs(host, ".meta.org") ||
 		shExpMatch(host, "*.facebook.*") ||
 		dnsDomainIs(host, ".fbcdn.net") ||
 		dnsDomainIs(host, ".fb.com") ||
@@ -182,6 +186,7 @@ function FindProxyForURL(url, host)
 		// Apple
 		dnsDomainIs(host, ".apple") ||
 		dnsDomainIs(host, ".apple-dns.net") ||
+		dnsDomainIs(host, ".apple-cloudkit.com") ||
 		dnsDomainIs(host, ".cdn-apple.com") ||
 
 		// Microsoft
