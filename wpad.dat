@@ -3,6 +3,9 @@ function FindProxyForURL(url, host)
 	var direct = "DIRECT";
 	var tunnel = "PROXY 192.168.1.1:8118";
 
+	if (isPlainHostName(host))
+		return direct;
+
 	// for DEBUG
 	//direct = "PROXY 192.168.1.1:8228";
 
@@ -71,10 +74,10 @@ function FindProxyForURL(url, host)
 		dnsDomainIs(host, ".g.co") ||
 		dnsDomainIs(host, ".goo.gl") ||
 		dnsDomainIs(host, ".goo.gle") ||
-		host.match(/\.google\./) ||
+		shExpMatch(host, "*.google.*") ||
 		dnsDomainIs(host, ".google") ||
 		dnsDomainIs(host, ".gmail.com") ||
-		host.match(/\.blogspot\./) ||
+		shExpMatch(host, "*.blogspot.*") ||
 		dnsDomainIs(host, ".blogger.com") ||
 		dnsDomainIs(host, ".blogblog.com") ||
 		dnsDomainIs(host, ".youtube.com") ||
@@ -83,7 +86,7 @@ function FindProxyForURL(url, host)
 		dnsDomainIs(host, ".ytimg.com") ||
 		dnsDomainIs(host, ".appspot.com") ||
 		dnsDomainIs(host, ".ggpht.com") ||
-		host.match(/\.gstatic\./) ||
+		shExpMatch(host, "*.gstatic.*") ||
 		dnsDomainIs(host, ".googlemail.com") ||
 		dnsDomainIs(host, ".googlelabs.com") ||
 		dnsDomainIs(host, ".googleapis.com") ||
@@ -100,14 +103,14 @@ function FindProxyForURL(url, host)
 		dnsDomainIs(host, ".googlesyndication.com") ||
 		dnsDomainIs(host, ".google-analytics.com") ||
 		dnsDomainIs(host, ".googleadservices.com") ||
-		host.match(/\.googleadsserving\./) ||
+		shExpMatch(host, "*.googleadsserving.*") ||
 		dnsDomainIs(host, ".googlemashups.com") ||
 		dnsDomainIs(host, ".googlewave.com") ||
 		dnsDomainIs(host, ".googlehosted.com") ||
 		dnsDomainIs(host, ".googleartproject.com") ||
 		dnsDomainIs(host, ".googleoptimize.com") ||
 		dnsDomainIs(host, ".feedburner.com") ||
-		host.match(/\.doubleclick\./) ||
+		shExpMatch(host, "*.doubleclick.*") ||
 		dnsDomainIs(host, ".gvt0.com") ||
 		dnsDomainIs(host, ".gvt1.com") ||
 		dnsDomainIs(host, ".gvt2.com") ||
@@ -126,7 +129,7 @@ function FindProxyForURL(url, host)
 		dnsDomainIs(host, ".solveforx.com") ||
 		dnsDomainIs(host, ".firebaseapp.com") ||
 		dnsDomainIs(host, ".app-analytics-services.com") ||
-		host.match(/\.colab\./) ||
+		shExpMatch(host, "*.colab.*") ||
 		dnsDomainIs(host, ".crashlytics.com") ||
 		dnsDomainIs(host, ".2mdn.net") ||
 
@@ -139,9 +142,9 @@ function FindProxyForURL(url, host)
 		dnsDomainIs(host, ".pscp.tv") ||
 
 		// Yahoo!
-		host.match(/\.yahoo\./) ||
+		shExpMatch(host, "*.yahoo.*") ||
 		dnsDomainIs(host, ".ymail.com") ||
-		host.match(/\.yimg\./) ||
+		shExpMatch(host, "*.yimg.*") ||
 		dnsDomainIs(host, ".yahooapis.com") ||
 		dnsDomainIs(host, ".yahoodns.net") ||
 		dnsDomainIs(host, ".yahoosandbox.com") ||
@@ -154,7 +157,7 @@ function FindProxyForURL(url, host)
 		dnsDomainIs(host, ".aol.com") ||
 
 		// Meta
-		host.match(/\.facebook\./) ||
+		shExpMatch(host, "*.facebook.*") ||
 		dnsDomainIs(host, ".fbcdn.net") ||
 		dnsDomainIs(host, ".fb.com") ||
 		dnsDomainIs(host, ".thefacebook.com") ||
@@ -162,11 +165,11 @@ function FindProxyForURL(url, host)
 		dnsDomainIs(host, ".instagram.com") ||
 		dnsDomainIs(host, ".cdninstagram.com") ||
 		dnsDomainIs(host, ".instagr.am") ||
-		host.match(/\.whatsapp\./) ||
+		shExpMatch(host, "*.whatsapp.*") ||
 		dnsDomainIs(host, ".messenger.com") ||
 
 		// Amazon
-		host.match(/\.amazon\./) ||
+		shExpMatch(host, "*.amazon.*") ||
 		dnsDomainIs(host, ".amazonaws.com") ||
 		dnsDomainIs(host, ".siege-amazon.com") ||
 		dnsDomainIs(host, ".media-amazon.com") ||
@@ -185,8 +188,8 @@ function FindProxyForURL(url, host)
 		dnsDomainIs(host, ".live.com") ||
 		dnsDomainIs(host, ".live.net") ||
 		dnsDomainIs(host, ".onedrive.com") ||
-		host.match(/\.linkedin\./) ||
-		host.match(/\.github\./) ||
+		shExpMatch(host, "*.linkedin.*") ||
+		shExpMatch(host, "*.github.*") ||
 		dnsDomainIs(host, ".githubusercontent.com") ||
 		dnsDomainIs(host, ".githubassets.com") ||
 		dnsDomainIs(host, ".githubapp.com") ||
@@ -220,17 +223,17 @@ function FindProxyForURL(url, host)
 		dnsDomainIs(host, ".bloomberg.com") ||
 		dnsDomainIs(host, ".businessweek.com") ||
 		dnsDomainIs(host, ".businessinsider.com") ||
-		host.match(/\.wsj\./) ||
-		host.match(/\.cnn\./) ||
+		shExpMatch(host, "*.wsj.*") ||
+		shExpMatch(host, "*.cnn.*") ||
 		dnsDomainIs(host, ".reuters.com") ||
 		dnsDomainIs(host, ".rfachina.com") ||
 		dnsDomainIs(host, ".washingtonpost.com") ||
-		host.match(/\.washpost\./) ||
+		shExpMatch(host, "*.washpost.*") ||
 		dnsDomainIs(host, ".voanews.com") ||
 		dnsDomainIs(host, ".voachinese.com") ||
 		dnsDomainIs(host, ".n.pr") ||
-		host.match(/\.npr\./) ||
-		host.match(/\.nprapps\./) ||
+		shExpMatch(host, "*.npr.*") ||
+		shExpMatch(host, "*.nprapps.*") ||
 		dnsDomainIs(host, ".ti.me") ||
 		dnsDomainIs(host, ".time.com") ||
 		dnsDomainIs(host, ".timeinc.net") ||
@@ -249,10 +252,10 @@ function FindProxyForURL(url, host)
 		dnsDomainIs(host, ".trib.al") ||
 
 		// Tools
-		host.match(/\.duckduckgo\./) ||
-		host.match(/\.mozilla\./) ||
-		host.match(/\.firefox\./) ||
-		host.match(/\.wordpress\./) ||
+		shExpMatch(host, "*.duckduckgo.*") ||
+		shExpMatch(host, "*.mozilla.*") ||
+		shExpMatch(host, "*.firefox.*") ||
+		shExpMatch(host, "*.wordpress.*") ||
 		dnsDomainIs(host, ".wp.com") ||
 		dnsDomainIs(host, ".gravatar.com") ||
 		dnsDomainIs(host, ".dropbox.com") ||
@@ -271,9 +274,9 @@ function FindProxyForURL(url, host)
  		dnsDomainIs(host, ".oaiusercontent.com") ||
  		dnsDomainIs(host, ".chatgpt.com") ||
 		dnsDomainIs(host, ".sstatic.net") ||
-		host.match(/\.z-library\./) ||
-		host.match(/\.cdn-zlib\./) ||
-		host.match(/\.go-to-library\./) ||
+		shExpMatch(host, "*.z-library.*") ||
+		shExpMatch(host, "*.cdn-zlib.*") ||
+		shExpMatch(host, "*.go-to-library.*") ||
 		dnsDomainIs(host, ".reddit.com") ||
  		dnsDomainIs(host, ".redditmedia.com") ||
  		dnsDomainIs(host, ".redditlist.com") ||
