@@ -1,47 +1,31 @@
 function FindProxyForURL(url, host)
 {
 	var direct = "DIRECT";
-	var tunnel = "PROXY 192.168.1.1:8118";
 
 	if (isPlainHostName(host))
 		return direct;
 
-	// for DEBUG
-	//direct = "PROXY 192.168.1.1:8228";
+	var tunnel = "PROXY 192.168.1.1:8118";
+	//direct = "PROXY 192.168.1.1:8228"; //for DEBUG
 
-	host = host.toLowerCase();
-	host = "." + host;
+	host = "." + host.toLowerCase();
 
 	// Shortcuts
 	if (
 		dnsDomainIs(host, ".cn") ||
-		dnsDomainIs(host, ".aliapp.org") ||
 
 		false)
 		return direct;
 
 	// Common rules
 	if (
-		// Apple
-		dnsDomainIs(host, ".icloud.com") ||
-		dnsDomainIs(host, ".icloud-content.com") ||
-		dnsDomainIs(host, ".apple-cloudkit.com") ||
-		dnsDomainIs(host, ".mzstatic.com") ||
-		dnsDomainIs(host, ".cdn-apple.com") ||
-		dnsDomainIs(host, ".apple-dns.net") ||
-		dnsDomainIs(host, ".apple") ||
-
-		// Top level domains - used frequently
-		dnsDomainIs(host, ".au") ||
-		dnsDomainIs(host, ".org") ||
-
 		// X a.k.a. Twitter
-		dnsDomainIs(host, ".x.com") ||
-		dnsDomainIs(host, ".t.co") ||
-		dnsDomainIs(host, ".twitter.com") ||
 		dnsDomainIs(host, ".twimg.com") ||
+		dnsDomainIs(host, ".twitter.com") ||
+		dnsDomainIs(host, ".t.co") ||
+		dnsDomainIs(host, ".x.co") ||
+		dnsDomainIs(host, ".x.com") ||
 		dnsDomainIs(host, ".ads-twitter.com") ||
-		dnsDomainIs(host, ".pscp.tv") ||
 
 		// Google
 		shExpMatch(host, "*.gstatic.*") ||
@@ -52,26 +36,32 @@ function FindProxyForURL(url, host)
 		dnsDomainIs(host, ".ytimg.com") ||
 		dnsDomainIs(host, ".youtube.com") ||
 		dnsDomainIs(host, ".ggpht.com") ||
-		dnsDomainIs(host, ".gmail.com") ||
-		dnsDomainIs(host, ".googlemail.com") ||
 		dnsDomainIs(host, ".googleusercontent.com") ||
 		dnsDomainIs(host, ".g.co") ||
-		dnsDomainIs(host, ".recaptcha.net") ||
 		dnsDomainIs(host, ".googledrive.com") ||
 		dnsDomainIs(host, ".googletagmanager.com") ||
 		dnsDomainIs(host, ".googletagservices.com") ||
 		dnsDomainIs(host, ".google-analytics.com") ||
+		dnsDomainIs(host, ".app-analytics-services.com") ||
+		dnsDomainIs(host, ".crashlytics.com") ||
+		dnsDomainIs(host, ".gvt3.com") ||
+		dnsDomainIs(host, ".gvt2.com") ||
+		dnsDomainIs(host, ".gvt1.com") ||
+		dnsDomainIs(host, ".gvt0.com") ||
 		shExpMatch(host, "*.doubleclick.*") ||
 		dnsDomainIs(host, ".googleadservices.com") ||
 		shExpMatch(host, "*.googleadsserving.*") ||
 		dnsDomainIs(host, ".googlesyndication.com") ||
+		dnsDomainIs(host, ".firebaseapp.com") ||
+		dnsDomainIs(host, ".firebaseio.com") ||
+		dnsDomainIs(host, ".recaptcha.net") ||
 		dnsDomainIs(host, ".youtube-nocookie.com") ||
 		dnsDomainIs(host, ".youtu.be") ||
 		dnsDomainIs(host, ".goo.gl") ||
 		dnsDomainIs(host, ".goo.gle") ||
 		dnsDomainIs(host, ".goog") ||
-		dnsDomainIs(host, ".firebaseapp.com") ||
-		dnsDomainIs(host, ".crashlytics.com") ||
+		dnsDomainIs(host, ".gmail.com") ||
+		dnsDomainIs(host, ".googlemail.com") ||
 		dnsDomainIs(host, ".android.com") ||
 		dnsDomainIs(host, ".chrome.com") ||
 		dnsDomainIs(host, ".googleblog.com") ||
@@ -81,37 +71,20 @@ function FindProxyForURL(url, host)
 		dnsDomainIs(host, ".googlegroups.com") ||
 		dnsDomainIs(host, ".googlesource.com") ||
 		dnsDomainIs(host, ".waze.com") ||
-		dnsDomainIs(host, ".gvt0.com") ||
-		dnsDomainIs(host, ".gvt1.com") ||
-		dnsDomainIs(host, ".gvt2.com") ||
-		dnsDomainIs(host, ".gvt3.com") ||
 		dnsDomainIs(host, ".appspot.com") ||
 		dnsDomainIs(host, ".googlehosted.com") ||
-		shExpMatch(host, "*.colab.*") ||
 		dnsDomainIs(host, ".googlelabs.com") ||
 		dnsDomainIs(host, ".withgoogle.com") ||
 		dnsDomainIs(host, ".thinkwithgoogle.com") ||
-//		dnsDomainIs(host, ".app-analytics-services.com") ||
-//		dnsDomainIs(host, ".googlemashups.com") ||
-//		dnsDomainIs(host, ".2mdn.net") ||
-//		dnsDomainIs(host, ".chromeexperiments.com") ||
-//		dnsDomainIs(host, ".googleoptimize.com") ||
-//		dnsDomainIs(host, ".googlepages.com") ||
-//		dnsDomainIs(host, ".googleartproject.com") ||
-//		dnsDomainIs(host, ".creativelab5.com") ||
-//		dnsDomainIs(host, ".agoogleaday.com") ||
-//		dnsDomainIs(host, ".tiltbrush.com") ||
-//		dnsDomainIs(host, ".solveforx.com") ||
-//		dnsDomainIs(host, ".feedburner.com") ||
-//		dnsDomainIs(host, ".googlecode.com") ||
-//		dnsDomainIs(host, ".googlewave.com") ||
 
-		// CDN
-		dnsDomainIs(host, ".akadns.net") ||
-		dnsDomainIs(host, ".cloudflare-dns.com") ||
-		dnsDomainIs(host, ".b-cdn.net") ||
-		dnsDomainIs(host, ".bootstrapcdn.com") ||
-		dnsDomainIs(host, ".dns-finder.com") ||
+		// Apple
+		dnsDomainIs(host, ".icloud.com") ||
+		dnsDomainIs(host, ".icloud-content.com") ||
+		dnsDomainIs(host, ".apple-cloudkit.com") ||
+		dnsDomainIs(host, ".mzstatic.com") ||
+		dnsDomainIs(host, ".cdn-apple.com") ||
+		dnsDomainIs(host, ".apple-dns.net") ||
+		dnsDomainIs(host, ".apple") ||
 
 		// Yahoo!
 		shExpMatch(host, "*.yimg.*") ||
@@ -123,28 +96,11 @@ function FindProxyForURL(url, host)
 		dnsDomainIs(host, ".flickr.com") ||
 		dnsDomainIs(host, ".staticflickr.com") ||
 		dnsDomainIs(host, ".yahoosandbox.com") ||
-		dnsDomainIs(host, ".flurry.com") ||
-		dnsDomainIs(host, ".oath.com") ||
-		dnsDomainIs(host, ".tumblr.com") ||
-		dnsDomainIs(host, ".aol.com") ||
-
-		// Amazon
-		shExpMatch(host, "*.amazon.*") ||
-		dnsDomainIs(host, ".amazonaws.com") ||
-		dnsDomainIs(host, ".siege-amazon.com") ||
-		dnsDomainIs(host, ".media-amazon.com") ||
-		dnsDomainIs(host, ".associates-amazon.com") ||
-		dnsDomainIs(host, ".ssl-images-amazon.com") ||
-		dnsDomainIs(host, ".amazon-adsystem.com") ||
-		dnsDomainIs(host, ".amazontrust.com") ||
-		dnsDomainIs(host, ".amzn.asia")  ||
 
 		// Microsoft
 		dnsDomainIs(host, ".live.com") ||
 		dnsDomainIs(host, ".live.net") ||
-		dnsDomainIs(host, ".onedrive.com") ||
 		shExpMatch(host, "*.linkedin.*") ||
-//		dnsDomainIs(host, ".slideshare.net") ||
 		shExpMatch(host, "*.github.*") ||
 		dnsDomainIs(host, ".githubusercontent.com") ||
 		dnsDomainIs(host, ".githubassets.com") ||
@@ -153,7 +109,17 @@ function FindProxyForURL(url, host)
 
 		// News
 		dnsDomainIs(host, ".afr.com") ||
-		dnsDomainIs(host, ".chinadigitaltimes.net") ||
+		dnsDomainIs(host, ".bbc.com") ||
+		dnsDomainIs(host, ".bbc.co.uk") ||
+		dnsDomainIs(host, ".bbci.co.uk") ||
+		dnsDomainIs(host, ".bbcchinese.com") ||
+		dnsDomainIs(host, ".bbc.in") ||
+		dnsDomainIs(host, ".voanews.com") ||
+		dnsDomainIs(host, ".voachinese.com") ||
+		dnsDomainIs(host, ".dw.de") ||
+		dnsDomainIs(host, ".dw.com") ||
+		dnsDomainIs(host, ".rfi.fr") ||
+		dnsDomainIs(host, ".rfi.my") ||
 		dnsDomainIs(host, ".nyti.ms") ||
 		dnsDomainIs(host, ".nytimes.com") ||
 		dnsDomainIs(host, ".nyt.com") ||
@@ -163,66 +129,64 @@ function FindProxyForURL(url, host)
 		dnsDomainIs(host, ".nytstyle.com") ||
 		dnsDomainIs(host, ".nytmediakit.com") ||
 		dnsDomainIs(host, ".tmagazine.com") ||
-		dnsDomainIs(host, ".dw.de") ||
-		dnsDomainIs(host, ".dw.com") ||
-		dnsDomainIs(host, ".bbc.com") ||
-		dnsDomainIs(host, ".bbc.co.uk") ||
-		dnsDomainIs(host, ".bbcmedia.co.uk") ||
-		dnsDomainIs(host, ".bbc.net.uk") ||
-		dnsDomainIs(host, ".bbcimg.co.uk") ||
-		dnsDomainIs(host, ".bbci.co.uk") ||
-		dnsDomainIs(host, ".bbcchinese.com") ||
-		dnsDomainIs(host, ".bbc.in") ||
-		dnsDomainIs(host, ".bbchat.tv") ||
-		dnsDomainIs(host, ".rfi.fr") ||
-		dnsDomainIs(host, ".rfi.my") ||
-		dnsDomainIs(host, ".forbes.com") ||
-		dnsDomainIs(host, ".bloomberg.com") ||
-		dnsDomainIs(host, ".businessweek.com") ||
-		dnsDomainIs(host, ".businessinsider.com") ||
-		shExpMatch(host, "*.wsj.*") ||
-		shExpMatch(host, "*.cnn.*") ||
-		dnsDomainIs(host, ".reuters.com") ||
-		dnsDomainIs(host, ".rfachina.com") ||
-		dnsDomainIs(host, ".washingtonpost.com") ||
-		shExpMatch(host, "*.washpost.*") ||
-		dnsDomainIs(host, ".voanews.com") ||
-		dnsDomainIs(host, ".voachinese.com") ||
-		dnsDomainIs(host, ".n.pr") ||
-		shExpMatch(host, "*.npr.*") ||
-		shExpMatch(host, "*.nprapps.*") ||
-		dnsDomainIs(host, ".ti.me") ||
-		dnsDomainIs(host, ".time.com") ||
-		dnsDomainIs(host, ".timeinc.net") ||
+		dnsDomainIs(host, ".wsj.com") ||
+		dnsDomainIs(host, ".wsj.net") ||
 		dnsDomainIs(host, ".ft.com") ||
 		dnsDomainIs(host, ".ftchinese.com") ||
 		dnsDomainIs(host, ".economist.com") ||
 		dnsDomainIs(host, ".econ.st") ||
 		dnsDomainIs(host, ".theguardian.com") ||
+		dnsDomainIs(host, ".reuters.com") ||
 		dnsDomainIs(host, ".theatlantic.com") ||
-		dnsDomainIs(host, ".sc.mp") ||
-		dnsDomainIs(host, ".scmp.com") ||
+		dnsDomainIs(host, ".foreignaffairs.com") ||
+		dnsDomainIs(host, ".ti.me") ||
+		dnsDomainIs(host, ".time.com") ||
+		dnsDomainIs(host, ".timeinc.net") ||
+		dnsDomainIs(host, ".apnews.com") ||
+		dnsDomainIs(host, ".ap.org") ||
+		dnsDomainIs(host, ".aptv.org") ||
+		dnsDomainIs(host, ".apimages.com") ||
+		dnsDomainIs(host, ".forbes.com") ||
+		dnsDomainIs(host, ".bloomberg.com") ||
+		dnsDomainIs(host, ".trib.al") ||
+		dnsDomainIs(host, ".businessweek.com") ||
+		dnsDomainIs(host, ".businessinsider.com") ||
+		shExpMatch(host, "*.cnn.*") ||
+		dnsDomainIs(host, ".turner.com") ||
+		dnsDomainIs(host, ".washingtonpost.com") ||
+		dnsDomainIs(host, ".wpdigital.net") ||
+		dnsDomainIs(host, ".wapo.st") ||
+		dnsDomainIs(host, ".rfachina.com") ||
 		dnsDomainIs(host, ".nikkei.com") ||
+		dnsDomainIs(host, ".scmp.com") ||
+		dnsDomainIs(host, ".sc.mp") ||
 		dnsDomainIs(host, ".hk01.com") ||
 		dnsDomainIs(host, ".zaobao.com") ||
-		dnsDomainIs(host, ".foreignaffairs.com") ||
-		dnsDomainIs(host, ".trib.al") ||
+		dnsDomainIs(host, ".chinadigitaltimes.net") ||
+ 		dnsDomainIs(host, ".v2ex.com") ||
 
 		// Tools
 		shExpMatch(host, "*.duckduckgo.*") ||
 		dnsDomainIs(host, ".sstatic.net") ||
  		dnsDomainIs(host, ".openai.com") ||
+ 		dnsDomainIs(host, ".oaistatic.com") ||
  		dnsDomainIs(host, ".oaiusercontent.com") ||
  		dnsDomainIs(host, ".chatgpt.com") ||
+ 		dnsDomainIs(host, ".anthropic.com") ||
+		dnsDomainIs(host, ".redd.it") ||
 		dnsDomainIs(host, ".reddit.com") ||
  		dnsDomainIs(host, ".redditmedia.com") ||
  		dnsDomainIs(host, ".redditlist.com") ||
  		dnsDomainIs(host, ".redditstatic.com") ||
-		dnsDomainIs(host, ".redd.it") ||
-		shExpMatch(host, "*.mozilla.*") ||
-		shExpMatch(host, "*.firefox.*") ||
+ 		dnsDomainIs(host, ".redditspace.com") ||
+ 		dnsDomainIs(host, ".mozilla.org") ||
+ 		dnsDomainIs(host, ".mozilla.net") ||
+ 		dnsDomainIs(host, ".mozilla.com") ||
+ 		dnsDomainIs(host, ".firefox.com") ||
+ 		dnsDomainIs(host, ".mozgcp.net") ||
 		shExpMatch(host, "*.wordpress.*") ||
 		dnsDomainIs(host, ".wp.com") ||
+		dnsDomainIs(host, ".gravatar.com") ||
 		dnsDomainIs(host, ".dropbox.com") ||
 		dnsDomainIs(host, ".dropboxusercontent.com") ||
 		dnsDomainIs(host, ".dropboxstatic.com") ||
@@ -239,16 +203,64 @@ function FindProxyForURL(url, host)
  		dnsDomainIs(host, ".quoracdn.net") ||
 		dnsDomainIs(host, ".ycombinator.com") ||
  		dnsDomainIs(host, ".medium.com") ||
-		dnsDomainIs(host, ".gravatar.com") ||
 		dnsDomainIs(host, ".ted.com") ||
  		dnsDomainIs(host, ".tedcdn.com") ||
- 		dnsDomainIs(host, ".v2ex.com") ||
 		dnsDomainIs(host, ".pinterest.com") ||
  		dnsDomainIs(host, ".feedblitz.com") ||
 		dnsDomainIs(host, ".vimeo.com") ||
 		dnsDomainIs(host, ".vimeocdn.com") ||
-//		dnsDomainIs(host, ".godaddy.com") ||
-//		dnsDomainIs(host, ".digicert.com") ||
+
+		// Top level domains
+		dnsDomainIs(host, ".org") ||
+		dnsDomainIs(host, ".au") ||
+		dnsDomainIs(host, ".sg") ||
+		dnsDomainIs(host, ".io") ||
+		dnsDomainIs(host, ".me") ||
+		dnsDomainIs(host, ".ai") ||
+		dnsDomainIs(host, ".sk") ||
+		dnsDomainIs(host, ".dev") ||
+		dnsDomainIs(host, ".tw") ||
+		dnsDomainIs(host, ".jp") ||
+		dnsDomainIs(host, ".global") ||
+		dnsDomainIs(host, ".gov") ||
+		dnsDomainIs(host, ".us") ||
+		dnsDomainIs(host, ".mil") ||
+		dnsDomainIs(host, ".uk") ||
+		dnsDomainIs(host, ".ca") ||
+		dnsDomainIs(host, ".eu") ||
+		dnsDomainIs(host, ".ru") ||
+		dnsDomainIs(host, ".gg") ||
+		dnsDomainIs(host, ".tv") ||
+		dnsDomainIs(host, ".dj") ||
+		dnsDomainIs(host, ".fm") ||
+		dnsDomainIs(host, ".ly") ||
+		dnsDomainIs(host, ".it") ||
+		dnsDomainIs(host, ".vc") ||
+		dnsDomainIs(host, ".gs") ||
+		dnsDomainIs(host, ".bz") ||
+		dnsDomainIs(host, ".cc") ||
+		dnsDomainIs(host, ".im") ||
+		dnsDomainIs(host, ".to") ||
+		dnsDomainIs(host, ".is") ||
+		dnsDomainIs(host, ".asia") ||
+		dnsDomainIs(host, ".news") ||
+		dnsDomainIs(host, ".wiki") ||
+		dnsDomainIs(host, ".media") ||
+		dnsDomainIs(host, ".app") ||
+		dnsDomainIs(host, ".biz") ||
+		dnsDomainIs(host, ".tech") ||
+		dnsDomainIs(host, ".icu") ||
+		dnsDomainIs(host, ".xyz") ||
+		dnsDomainIs(host, ".space") ||
+		dnsDomainIs(host, ".digital") ||
+		dnsDomainIs(host, ".report") ||
+
+		// DNS
+		dnsDomainIs(host, ".akadns.net") ||
+		dnsDomainIs(host, ".cloudflare-dns.com") ||
+		dnsDomainIs(host, ".opendns.com") ||
+		dnsDomainIs(host, ".quad9.net") ||
+		dnsDomainIs(host, ".dyndns.org") ||
 
 		// Meta
 		shExpMatch(host, "*.facebook.*") ||
@@ -261,47 +273,6 @@ function FindProxyForURL(url, host)
 		dnsDomainIs(host, ".meta.com") ||
 		dnsDomainIs(host, ".thefacebook.com") ||
 		dnsDomainIs(host, ".fbsbx.com") ||
-//		dnsDomainIs(host, ".messenger.com") ||
-//		dnsDomainIs(host, ".meta.org") ||
-
-		// Top level domains - rare used
-		dnsDomainIs(host, ".tw") ||
-		dnsDomainIs(host, ".sg") ||
-		dnsDomainIs(host, ".gov") ||
-		dnsDomainIs(host, ".mil") ||
-		dnsDomainIs(host, ".us") ||
-		dnsDomainIs(host, ".uk") ||
-		dnsDomainIs(host, ".ca") ||
-		dnsDomainIs(host, ".jp") ||
-		dnsDomainIs(host, ".eu") ||
-		dnsDomainIs(host, ".ru") ||
-		dnsDomainIs(host, ".sk") ||
-		dnsDomainIs(host, ".co") ||
-		dnsDomainIs(host, ".io") ||
-		dnsDomainIs(host, ".ai") ||
-		dnsDomainIs(host, ".gg") ||
-		dnsDomainIs(host, ".tv") ||
-		dnsDomainIs(host, ".dj") ||
-		dnsDomainIs(host, ".fm") ||
-		dnsDomainIs(host, ".ly") ||
-		dnsDomainIs(host, ".it") ||
-		dnsDomainIs(host, ".me") ||
-		dnsDomainIs(host, ".vc") ||
-		dnsDomainIs(host, ".gs") ||
-		dnsDomainIs(host, ".bz") ||
-		dnsDomainIs(host, ".cc") ||
-		dnsDomainIs(host, ".im") ||
-		dnsDomainIs(host, ".to") ||
-		dnsDomainIs(host, ".is") ||
-		dnsDomainIs(host, ".asia") ||
-		dnsDomainIs(host, ".global") ||
-		dnsDomainIs(host, ".news") ||
-		dnsDomainIs(host, ".wiki") ||
-		dnsDomainIs(host, ".media") ||
-		dnsDomainIs(host, ".app") ||
-		dnsDomainIs(host, ".biz") ||
-		dnsDomainIs(host, ".tech") ||
-		dnsDomainIs(host, ".icu") ||
 
 		// Privoxy
  		dnsDomainIs(host, ".p.p") ||
