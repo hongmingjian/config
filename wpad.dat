@@ -4,6 +4,10 @@ function FindProxyForURL(url, host)
 
 	if (isPlainHostName(host))
 		return direct;
+	    
+	//10.x.x.x / 192.168.x.x / 172.16.x.x-172.31.x.x / 127.x.x.x
+	if (/^(10\.\d+\.\d+\.\d+|192\.168\.\d+\.\d+|172\.(1[6-9]|2\d|3[0-1])\.\d+\.\d+|127\.\d+\.\d+\.\d+)$/.test(host))
+		return direct;
 
 	var tunnel = "PROXY 192.168.1.1:8118";
 	//direct = "PROXY 192.168.1.1:8228"; //for DEBUG
@@ -12,6 +16,7 @@ function FindProxyForURL(url, host)
 
 	// Shortcuts
 	if (
+		dnsDomainIs(host, ".local") ||
 		dnsDomainIs(host, ".cn") ||
 
 		false)
