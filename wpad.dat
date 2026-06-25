@@ -16,8 +16,12 @@ function FindProxyForURL(url, host)
 
 	// Shortcuts
 	if (
-		dnsDomainIs(host, ".local") ||
 		dnsDomainIs(host, ".cn") ||
+
+		// Prevent DNS leakage
+		dnsDomainIs(host, ".local") ||
+		dnsDomainIs(host, ".lan") ||
+		dnsDomainIs(host, ".home.arpa") ||
 
 		false)
 		return direct;
@@ -103,14 +107,14 @@ function FindProxyForURL(url, host)
 		dnsDomainIs(host, ".yahoosandbox.com") ||
 
 		// Microsoft
-		dnsDomainIs(host, ".live.com") ||
-		dnsDomainIs(host, ".live.net") ||
-		shExpMatch(host, "*.linkedin.*") ||
 		shExpMatch(host, "*.github.*") ||
 		dnsDomainIs(host, ".githubusercontent.com") ||
 		dnsDomainIs(host, ".githubassets.com") ||
 		dnsDomainIs(host, ".githubapp.com") ||
 		dnsDomainIs(host, ".githubcopilot.com") ||
+		dnsDomainIs(host, ".live.com") ||
+		dnsDomainIs(host, ".live.net") ||
+		shExpMatch(host, "*.linkedin.*") ||
 
 		// News
 		dnsDomainIs(host, ".afr.com") ||
