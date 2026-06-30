@@ -52,6 +52,7 @@ function FindProxyForURL(url, host)
 		dnsDomainIs(host, ".googletagservices.com") ||
 		dnsDomainIs(host, ".google-analytics.com") ||
 		dnsDomainIs(host, ".app-analytics-services.com") ||
+		dnsDomainIs(host, ".app-measurement.com") ||
 		dnsDomainIs(host, ".crashlytics.com") ||
 		dnsDomainIs(host, ".gvt3.com") ||
 		dnsDomainIs(host, ".gvt2.com") ||
