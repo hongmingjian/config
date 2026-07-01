@@ -54,6 +54,7 @@ i2p = +forward-override{forward 127.0.0.1:4444} \
 .digital
 .report
 .press
+.blog
 
 # X a.k.a. Twitter
 .twimg.com
@@ -266,3 +267,16 @@ i2p = +forward-override{forward 127.0.0.1:4444} \
 .thefacebook.com
 .fbsbx.com
 
+{ -forward-override }
+.cn
+
+{ +block{ads} }
+hm.baidu.com
+pos.baidu.com
+cbjs.baidu.com
+cpro.baidu.com
+eclick.baidu.com
+fclick.baidu.com
+nsclick.baidu.com
+nsclickvideo.baidu.com
+sclick.baidu.com
