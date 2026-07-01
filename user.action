@@ -9,6 +9,52 @@ i2p = +forward-override{forward 127.0.0.1:4444} \
 
 { sss }
 
+# Top level domains
+.org
+.au
+.sg
+.io
+.me
+.ai
+.sk
+.dev
+.tw
+.jp
+.global
+.gov
+.us
+.mil
+.uk
+.ca
+.eu
+.ru
+.gg
+.tv
+.dj
+.fm
+.ly
+.it
+.vc
+.gs
+.bz
+.cc
+.im
+.to
+.is
+.asia
+.news
+.wiki
+.media
+.app
+.biz
+.tech
+.icu
+.xyz
+.space
+.digital
+.report
+.press
+
 # X a.k.a. Twitter
 .twimg.com
 .twitter.com
@@ -101,8 +147,8 @@ i2p = +forward-override{forward 127.0.0.1:4444} \
 # News
 .afr.com
 .bbc.com
-.bbc.co.uk
-.bbci.co.uk
+#.bbc.co.uk
+#.bbci.co.uk
 .bbcchinese.com
 .bbc.in
 .voanews.com
@@ -134,8 +180,8 @@ i2p = +forward-override{forward 127.0.0.1:4444} \
 .time.com
 .timeinc.net
 .apnews.com
-.ap.org
-.aptv.org
+#.ap.org
+#.aptv.org
 .apimages.com
 .forbes.com
 .bloomberg.com
@@ -164,13 +210,13 @@ i2p = +forward-override{forward 127.0.0.1:4444} \
 .oaiusercontent.com
 .chatgpt.com
 .anthropic.com
-.redd.it
+#.redd.it
 .reddit.com
 .redditmedia.com
 .redditlist.com
 .redditstatic.com
 .redditspace.com
-.mozilla.org
+#.mozilla.org
 .mozilla.net
 .mozilla.com
 .firefox.com
@@ -189,7 +235,7 @@ i2p = +forward-override{forward 127.0.0.1:4444} \
 .cdn-zlib.
 .go-to-library.
 .singlelogin.
-.zlibrary-redirect.org
+#.zlibrary-redirect.org
 .quora.com
 .quoracdn.net
 .ycombinator.com
@@ -200,51 +246,6 @@ i2p = +forward-override{forward 127.0.0.1:4444} \
 .feedblitz.com
 .vimeo.com
 .vimeocdn.com
-
-# Top level domains
-.org
-.au
-.sg
-.io
-.me
-.ai
-.sk
-.dev
-.tw
-.jp
-.global
-.gov
-.us
-.mil
-.uk
-.ca
-.eu
-.ru
-.gg
-.tv
-.dj
-.fm
-.ly
-.it
-.vc
-.gs
-.bz
-.cc
-.im
-.to
-.is
-.asia
-.news
-.wiki
-.media
-.app
-.biz
-.tech
-.icu
-.xyz
-.space
-.digital
-.report
 
 # DNS
 .akadns.net
