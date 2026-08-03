@@ -190,8 +190,10 @@ endif
 
 " Platform specific
 if (has("win32"))
-	set guifont=Consolas:h12:cANSI
-   	set guifontwide=NSimsun:h12
+	if has("gui")
+		set guifont=Consolas:h12:cANSI
+   		set guifontwide=NSimsun:h12
+	endif
 
     if (has("gui_running"))
         set termencoding=utf-8
@@ -207,7 +209,9 @@ if (has("win32"))
 elseif (has("win32unix"))
     set termencoding=gbk
 elseif (has("macunix"))
-	set guifont=DejaVuSansMonoForPowerline:h14
+	if has("gui")
+		set guifont=DejaVuSansMNFM:h18
+	endif
 
 	let s:theme = system('defaults read -g AppleInterfaceStyle >/dev/null 2>&1')
 	if v:shell_error
@@ -218,10 +222,12 @@ elseif (has("macunix"))
 
     colorscheme industry
 else
+	if has("gui")
+    	set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 12
+	endif
     if has("gui_running")
         "set guioptions-=m
         "set guioptions-=T
-        set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 12
     else
         if &term == 'xterm' || &term == 'screen'
             set t_Co=256
