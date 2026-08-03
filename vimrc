@@ -133,6 +133,11 @@ if has('cscope')
 endif
 
 " config fzf
+if executable('rg')
+	let $FZF_DEFAULT_COMMAND='rg --files --hidden --follow'
+elseif executable('ag')
+	let $FZF_DEFAULT_COMMAND='ag --path-to-ignore ~/.ignore -g ""'
+endif
 nnoremap <silent> <leader><space> :Files<CR>
 nnoremap <silent> <leader>/ :Ag<CR>
 nnoremap <silent> <leader>h :History<CR>
