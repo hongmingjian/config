@@ -167,27 +167,6 @@ let g:slimv_repl_split=0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("autocmd")
-    function! s:session_vim_enter()
-        if bufnr('$') == 1 && bufname('%') == '' && !&mod && getline(1, '$') == ['']
-            execute 'silent source ~/.vim/lastsession.vim'
-        else
-           let s:session_loaded = 0
-        endif
-    endfunction
-
-    function! s:session_vim_leave()
-        if s:session_loaded == 1
-            let sessionoptions = &sessionoptions
-            try
-                set sessionoptions-=options
-                set sessionoptions+=tabpages
-                execute 'mksession! ~/.vim/lastsession.vim'
-            finally
-                let &sessionoptions = sessionoptions
-            endtry
-        endif
-    endfunction
-
     " https://gist.github.com/romainl/379904f91fa40533175dfaec4c833f2f
     function! MyHighlights() abort
         highlight ColorColumn ctermbg=Red guibg=Red
@@ -196,18 +175,6 @@ if has("autocmd")
 
     autocmd FileType make   set noexpandtab
     autocmd FileType python set expandtab foldmethod=indent
-
-    " Remember position of last edit and return on reopen
-    autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-
-    let s:session_loaded = 1
-    augroup autosession
-        " load last session on start
-        " Note: without 'nested' filetypes are not restored.
-        autocmd VimEnter * nested call s:session_vim_enter()
-        autocmd VimLeavePre * call s:session_vim_leave()
-    augroup END
-
     autocmd ColorScheme * call MyHighlights()
 
     if has("gui_running")
