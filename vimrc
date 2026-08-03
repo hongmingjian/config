@@ -169,6 +169,9 @@ set signcolumn=yes
 
 " config Slimv
 let g:slimv_repl_split=0
+let g:paredit_mode=0            " Disable auto insert of matched characters
+let g:slimv_clhs_root="file://$HOME/Sourcery/quicklisp/dists/quicklisp/software/clhs-0.6.3/HyperSpec-7-0/HyperSpec/Body/"
+let g:swank_host='192.168.56.2' " LispWorks
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("autocmd")
@@ -204,8 +207,6 @@ if (has("win32"))
 
         language message zh_CN.UTF-8
     endif
-
-"	let g:slimv_swank_cmd='!start "C:\Program Files\SBCL\sbcl.exe" --load "C:\Users\hmj\vimfiles\slime\start-swank.lisp"'
 elseif (has("win32unix"))
     set termencoding=gbk
 elseif (has("macunix"))
