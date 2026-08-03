@@ -1,12 +1,21 @@
 set nocompatible
 
+if has('macunix')
+	if has("python3_dynamic")
+		set pythonthreedll=/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/Current/Python3
+		set pythonthreehome=/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/Current
+	endif
+endif
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype off
 set rtp+=$HOME/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
-Plugin 'Valloric/YouCompleteMe'
+if v:version >= 901 && has('python3')
+	Plugin 'Valloric/YouCompleteMe'
+endif
 Plugin 'thirtythreeforty/lessspace.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'junegunn/fzf', { 'do': { -> fz#install() } }
@@ -233,11 +242,6 @@ elseif (has("macunix"))
 		"
 	else
 		"
-	endif
-
-	if has("python3_dynamic")
-		set pythonthreedll=/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/Current/Python3
-		set pythonthreehome=/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/Current
 	endif
 
     colorscheme industry
