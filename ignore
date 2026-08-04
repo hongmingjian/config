@@ -1,0 +1,32 @@
+# Ref: https://git-scm.com/docs/gitignore
+#
+# Directories
+#
+.git/
+.svn/
+__pycache__/
+.cache/
+.matplotlib/
+.jupyter/
+
+#
+# Files
+#
+.DS_Store
+Thumbs.db
+Thumbs.db:encryptable
+
+*.tmp
+*.o
+*.obj
+*.OBJ
+*.exp
+*.EXP
+*.pdb
+*.PDB
+
+*.py[cod]
+*.fasl
+
+*.lock
+*.lck
