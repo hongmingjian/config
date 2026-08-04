@@ -226,7 +226,7 @@ elseif (has("macunix"))
     colorscheme industry
 else
 	if has("gui")
-    	set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 12
+    	set guifont=Monospace\ 12
 	endif
     if has("gui_running")
         "set guioptions-=m
