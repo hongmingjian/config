@@ -90,7 +90,7 @@ nnoremap <leader>b :buffers<CR>:buffer<Space>
 nnoremap <silent> <leader> za
 
 " Copy & Paste from/to system clipboard
-vnoremap <silent> <leader>y "+y
+xnoremap <silent> <leader>y "+y
 nnoremap <silent> <leader>p "+p
 
 " Clear highlight until next search
