@@ -139,7 +139,7 @@ elseif executable('ag')
 	let $FZF_DEFAULT_COMMAND='ag --path-to-ignore ~/.ignore -g ""'
 endif
 nnoremap <silent> <leader><space> :Files<CR>
-nnoremap <silent> <leader>/ :Ag<CR>
+nnoremap <silent> <leader>/ :Rg<CR>
 nnoremap <silent> <leader>h :History<CR>
 
 " config ycm
