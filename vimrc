@@ -134,10 +134,12 @@ endif
 
 " config fzf
 if executable('rg')
-	let $FZF_DEFAULT_COMMAND='rg --files --hidden --follow'
+	let $FZF_DEFAULT_COMMAND='rg --files --hidden --follow --ignore-file ' . expand('~/.ignore')
+	command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --ignore-file " . shellescape(expand('~/.ignore')) . " -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview(), <bang>0)'
 elseif executable('ag')
-	let $FZF_DEFAULT_COMMAND='ag --path-to-ignore ~/.ignore -g ""'
+	let $FZF_DEFAULT_COMMAND='ag --path-to-ignore ' . expand('~/.ignore') . ' -g ""'
 endif
+
 nnoremap <silent> <leader><space> :Files<CR>
 nnoremap <silent> <leader>/ :Rg<CR>
 nnoremap <silent> <leader>h :History<CR>
