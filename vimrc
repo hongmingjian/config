@@ -171,7 +171,7 @@ set signcolumn=yes
 let g:slimv_repl_split=0
 let g:paredit_mode=0            " Disable auto insert of matched characters
 let g:slimv_clhs_root="file://$HOME/Sourcery/quicklisp/dists/quicklisp/software/clhs-0.6.3/HyperSpec-7-0/HyperSpec/Body/"
-let g:swank_host='192.168.56.2' " LispWorks
+let g:swank_host='win32.local' " LispWorks
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("autocmd")
