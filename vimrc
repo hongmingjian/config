@@ -48,7 +48,7 @@ set nowrap
 set hidden
 set history=1024
 set display+=lastline
-set colorcolumn=120
+set colorcolumn=100
 set noswapfile
 set nowritebackup
 set nobackup
@@ -171,9 +171,9 @@ set signcolumn=yes
 
 " config Slimv
 let g:slimv_repl_split=0
-let g:paredit_mode=0            " Disable auto insert of matched characters
+let g:paredit_mode=0             " Disable auto insert of matched characters
 let g:slimv_clhs_root="file://$HOME/Sourcery/quicklisp/dists/quicklisp/software/clhs-0.6.3/HyperSpec-7-0/HyperSpec/Body/"
-let g:swank_host='win32.local' " LispWorks
+let g:swank_host='win7x86.local'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("autocmd")
