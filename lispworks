@@ -1,24 +1,31 @@
 ;;;;
 ;;;; vim: filetype=lisp
 ;;;;
-;;;; This is the %USERPROFILE%\.lispworks
+;;;; This is the %USERPROFILE%\.lispworks and/or $HOME/.sbclrc
 ;;;;
 
-;;; The following lines added by ql:add-to-init-file:
-#-quicklisp
-(let ((quicklisp-init (pathname "Z:/hmj/Sourcery/quicklisp/setup.lisp")))
-  (when (probe-file quicklisp-init)
-    (load quicklisp-init)))
+(let ((homedir
+        #+(or windows mswindows os-windows win32)
+        #P"Z:/hmj/"
+        #+unix
+        (user-homedir-pathname)))
+  #-quicklisp
+  (load (merge-pathnames "Sourcery/quicklisp/setup.lisp" homedir))
+  (load (merge-pathnames ".vim/bundle/slimv/slime/swank-loader.lisp" homedir))
+  )
 
-;;; Create swank server
-;;; Set the following variable in the Slimv before connecting to the server
-;;;        let g:swank_host = '192.168.56.2'
-(load (pathname "Z:/hmj/.vim/bundle/slimv/slime/swank-loader.lisp"))
 (swank-loader:init)
-(define-action "Initialize LispWorks Tools"
-               "Create swank server"
-               #'(lambda (screen)
-                   (declare (ignore screen))
-                   (swank:create-server :interface "0.0.0.0" :port 4005 :dont-close t))
-               :after "Run the environment start up functions"
-               :once)
+(let ((create-swank-server (lambda ()
+                             (swank:create-server :interface "0.0.0.0" :port 4005 :dont-close t))))
+  #+lispworks
+  (define-action "Initialize LispWorks Tools"
+                 "Create swank server"
+                 #'(lambda (screen)
+                     (declare (ignore screen))
+                     (funcall create-swank-server))
+                 :after "Run the environment start up functions"
+                 :once)
+  #-lispworks
+  (funcall create-swank-server)
+  )
+
