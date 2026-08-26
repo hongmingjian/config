@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# ~/.vnc/xstartup
+
+unset SESSION_MANAGER
+unset DBUS_SESSION_BUS_ADDRESS
+
+autocutsel -fork &
+vncconfig -nowin &
+
+tint2 &
+
+x-terminal-emulator &
+
+exec openbox
+
