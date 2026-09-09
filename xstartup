@@ -5,7 +5,9 @@
 unset SESSION_MANAGER
 unset DBUS_SESSION_BUS_ADDRESS
 
-autocutsel -fork &
+if command -v autocutsel >/dev/null 2>&1; then
+     autocutsel -s CLIPBOARD -fork
+fi
 vncconfig -nowin &
 
 tint2 &
