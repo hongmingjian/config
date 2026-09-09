@@ -57,6 +57,7 @@ i2p = +forward-override{forward 127.0.0.1:4444}
 .report
 .press
 .blog
+.info
 
 # X a.k.a. Twitter
 .twimg.com
@@ -73,7 +74,7 @@ i2p = +forward-override{forward 127.0.0.1:4444}
 #.google
 .googlevideo.com
 .ytimg.com
-.youtube.com
+.youtube.
 .ggpht.com
 .googleusercontent.com
 .g.co
@@ -84,6 +85,10 @@ i2p = +forward-override{forward 127.0.0.1:4444}
 .app-analytics-services.com
 .app-measurement.com
 .crashlytics.com
+.gvt9.com
+.gvt7.com
+.gvt6.com
+.gvt5.com
 .gvt3.com
 .gvt2.com
 .gvt1.com
@@ -92,11 +97,14 @@ i2p = +forward-override{forward 127.0.0.1:4444}
 .googleadservices.com
 .googleadsserving.
 .googlesyndication.com
+.firebase.com
+#.firebase.io
 .firebaseapp.com
 .firebaseio.com
 .recaptcha.net
 .youtube-nocookie.com
 .youtu.be
+.yt.be
 .goo.gl
 .goo.gle
 .goog
@@ -116,6 +124,8 @@ i2p = +forward-override{forward 127.0.0.1:4444}
 .googlelabs.com
 .withgoogle.com
 .thinkwithgoogle.com
+.deepmind.com
+.androidify.com
 
 # Apple
 .icloud.com
@@ -136,6 +146,7 @@ i2p = +forward-override{forward 127.0.0.1:4444}
 .flickr.com
 .staticflickr.com
 .yahoosandbox.com
+.oath.com
 
 # Microsoft
 .github.
@@ -179,7 +190,7 @@ i2p = +forward-override{forward 127.0.0.1:4444}
 .reuters.com
 .theatlantic.com
 .foreignaffairs.com
-.ti.me
+#.ti.me
 .time.com
 .timeinc.net
 .apnews.com
@@ -249,13 +260,14 @@ i2p = +forward-override{forward 127.0.0.1:4444}
 .feedblitz.com
 .vimeo.com
 .vimeocdn.com
+.disqus.com
 
 # DNS
 .akadns.net
 .cloudflare-dns.com
 .opendns.com
 .quad9.net
-.dyndns.org
+#.dyndns.org
 
 # Meta
 .facebook.
@@ -271,6 +283,7 @@ i2p = +forward-override{forward 127.0.0.1:4444}
 
 { -forward-override }
 .cn
+.aliapp.org
 
 { +block{ads} }
 hm.baidu.com
