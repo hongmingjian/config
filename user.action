@@ -1,11 +1,13 @@
 {{alias}}
-sss = +forward-override{forward-socks5t 192.168.1.1:1080 .} \
-      +change-x-forwarded-for{block}
+sss = +forward-override{forward-socks5t 192.168.1.1:1080 .}
 tor = +forward-override{forward-socks4a 127.0.0.1:9150 .} \
-      +change-x-forwarded-for{block} \
       +client-header-filter{hide-tor-exit-notation}
-i2p = +forward-override{forward 127.0.0.1:4444} \
-      +change-x-forwarded-for{block}
+i2p = +forward-override{forward 127.0.0.1:4444}
+
+{ \
++change-x-forwarded-for{block} \
+}
+/
 
 { sss }
 
