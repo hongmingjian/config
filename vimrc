@@ -7,15 +7,43 @@ if has('macunix')
 	endif
 endif
 
+if has('python3')
+	python3 << EOF
+import os
+import sys
+
+# httpx only supports ('http', 'https', 'socks5')
+from urllib.parse import urlparse
+for var in ('HTTP_PROXY', 'http_proxy', 'HTTPS_PROXY', 'https_proxy', 'ALL_PROXY', 'all_proxy'):
+    if var in os.environ:
+        url_str = os.environ[var]
+        try:
+            parsed = urlparse(url_str)
+            if parsed.scheme not in ('http', 'https', 'socks5'):
+                del os.environ[var]
+        except Exception:
+            del os.environ[var]
+
+py_ver = '%d.%d' % (sys.version_info.major, sys.version_info.minor)
+venv_home = os.path.expanduser('~/.virtualenvs/%s' % py_ver)
+os.environ['VIRTUAL_ENV'] = venv_home
+os.environ['PATH'] = os.path.join(venv_home, 'bin') + os.pathsep + os.environ.get('PATH', '')
+sys.prefix = venv_home
+
+site_packages = os.path.join(venv_home, 'lib', 'python%s' % py_ver, 'site-packages')
+if os.path.exists(site_packages) and site_packages not in sys.path:
+	sys.path.insert(0, site_packages)
+EOF
+
+endif
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype off
 set rtp+=$HOME/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
-if v:version >= 901 && has('python3')
-	Plugin 'Valloric/YouCompleteMe'
-endif
+Plugin 'gergap/vim-ollama'
 Plugin 'thirtythreeforty/lessspace.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'junegunn/fzf', { 'do': { -> fz#install() } }
@@ -144,12 +172,16 @@ nnoremap <silent> <leader><space> :Files<CR>
 nnoremap <silent> <leader>/ :Rg<CR>
 nnoremap <silent> <leader>h :History<CR>
 
-" config ycm
-let g:ycm_confirm_extra_conf=0
-let g:ycm_auto_trigger=0         "<C-Space> for manual trigger
-let g:ycm_auto_hover=''
-let g:ycm_show_diagnostics_ui=0
-set completeopt-=preview
+" config vim-ollama
+let g:ollama_model      = 'qwen2.5-coder:1.5b-base' " code completion model
+let g:ollama_edit_model = 'llama3.2:3b'
+let g:ollama_chat_model = 'llama3.2:3b'
+
+"nnoremap <leader>c :OllamaChat<CR>
+"vnoremap <leader>e :OllamaEdit<CR>
+let g:ollama_debounce_time = 0
+" <C-j> == <Char-10>
+inoremap <Char-10> <Plug>(ollama-trigger-completion)
 
 " config tagbar
 map <F12> :TagbarToggle<CR>
