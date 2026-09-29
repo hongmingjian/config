@@ -1,6 +1,7 @@
 ;;;
-;;; /path/to/lispworks-7-1-0-x86-win32.exe -init lw-build-image.lisp -
+;;; /path/to/lispworks-7-1-0-x86-win32.exe -siteinit - -init lw-build-image.lisp -
 ;;;
+(require "describe")
 (require "asdf")
 
 (load (merge-pathnames ".vim/bundle/slimv/slime/swank-loader.lisp"
@@ -14,17 +15,11 @@
 (swank-loader:init :load-contribs t :setup nil)
 
 (defun start-swank-server ()
-
   (setf swank-loader:*source-directory* nil)
-
-  (mp:process-run-function
-    "Start Swank Server"
-    nil
-    #'(lambda ()
-        (swank:create-server
-          :interface "0.0.0.0"
-          :port 4005
-          :dont-close t))))
+  (swank:create-server
+    :interface "0.0.0.0"
+    :port 4005
+    :dont-close t))
 (push '("Start Swank Server" nil start-swank-server)
       mp:*initial-processes*)
 
