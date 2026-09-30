@@ -5,10 +5,8 @@
 (require "asdf")
 
 (load (merge-pathnames ".vim/bundle/slimv/slime/swank-loader.lisp"
-                       #+(or windows mswindows os-windows win32)
-                       #P"Z:/hmj/"
-                       #+unix
-                       (user-homedir-pathname)
+                       #+(or windows mswindows os-windows win32) #P"Z:/hmj/"
+                       #+unix (user-homedir-pathname)
                        ))
 
 ;; Equivalent to (swank-loader::loadup)

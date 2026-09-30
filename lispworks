@@ -4,17 +4,23 @@
 ;;;; This is the %USERPROFILE%\.lispworks and/or $HOME/.sbclrc
 ;;;;
 
-(let ((homedir
-        #+(or windows mswindows os-windows win32)
-        #P"Z:/hmj/"
-        #+unix
-        (user-homedir-pathname)))
-  #-quicklisp
-  (load (merge-pathnames "Sourcery/quicklisp/setup.lisp" homedir))
-  (load (merge-pathnames ".vim/bundle/slimv/slime/swank-loader.lisp" homedir))
-  )
+(defparameter *homedir*
+  #+(or windows mswindows os-windows win32) #P"Z:/hmj/"
+  #+unix (user-homedir-pathname))
 
-(swank-loader:init)
+#-quicklisp
+(let ((quicklisp-init (merge-pathnames "Sourcery/quicklisp/setup.lisp" *homedir*)))
+  (when (probe-file quicklisp-init)
+    (load quicklisp-init)))
+
+#-swank
+(let ((swank-init (merge-pathnames ".vim/bundle/slimv/slime/swank-loader.lisp" *homedir*)))
+  (if (probe-file swank-init)
+      (progn (load swank-init)
+             (funcall (read-from-string "swank-loader:init")))
+      (progn (ql:quickload :swank)
+             (funcall (read-from-string "swank:swank-require") :swank-repl))))
+
 (let ((create-swank-server (lambda ()
                              (swank:create-server :interface "0.0.0.0" :port 4005 :dont-close t))))
   #+lispworks
