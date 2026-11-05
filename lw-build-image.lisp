@@ -18,8 +18,16 @@
     :interface "0.0.0.0"
     :port 4005
     :dont-close t))
-(push '("Start Swank Server" nil start-swank-server)
-      mp:*initial-processes*)
+
+(defun main ()
+  (let ((args system:*line-arguments-list*))
+    (if (member "-w" args :test #'string=)
+        (start-swank-server)
+        (loop (sleep 60))
+    )))
+
+(push '("Main" nil main)
+      mp:*initial-processes*)    
 
 (load-all-patches)
 
