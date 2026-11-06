@@ -12,8 +12,9 @@
 ;; Equivalent to (swank-loader::loadup)
 (swank-loader:init :load-contribs t :setup nil)
 
+(setf swank-loader:*source-directory* nil)
+
 (defun start-swank-server ()
-  (setf swank-loader:*source-directory* nil)
   (swank:create-server
     :interface "0.0.0.0"
     :port 4005
