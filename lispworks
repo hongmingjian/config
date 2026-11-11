@@ -24,13 +24,7 @@
 (let ((create-swank-server (lambda ()
                              (swank:create-server :interface "0.0.0.0" :port 4005 :dont-close t))))
   #+lispworks
-  (define-action "Initialize LispWorks Tools"
-                 "Create swank server"
-                 #'(lambda (screen)
-                     (declare (ignore screen))
-                     (funcall create-swank-server))
-                 :after "Run the environment start up functions"
-                 :once)
+  (push (list "swank" nil (lambda () (funcall create-swank-server))) mp:*initial-processes*)
   #-lispworks
   (funcall create-swank-server)
   )
