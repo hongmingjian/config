@@ -21,11 +21,13 @@
       (progn (ql:quickload :swank)
              (funcall (read-from-string "swank:swank-require") :swank-repl))))
 
-(let ((create-swank-server (lambda ()
-                             (swank:create-server :interface "0.0.0.0" :port 4005 :dont-close t))))
-  #+lispworks
-  (push (list "swank" nil (lambda () (funcall create-swank-server))) mp:*initial-processes*)
-  #-lispworks
-  (funcall create-swank-server)
-  )
+(defun start-swank-server ()
+  (swank:create-server
+    :interface "0.0.0.0"
+    :port 4005
+    :dont-close t))
 
+#+lispworks
+(push '("swank" nil start-swank-server) mp:*initial-processes*)
+#-lispworks
+(start-swank-server)
