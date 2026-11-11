@@ -1,6 +1,7 @@
 ;;;
 ;;; /path/to/lispworks-7-1-0-x86-win32.exe -siteinit - -init lw-build-image.lisp -
 ;;;
+
 (require "describe")
 (require "asdf")
 
@@ -19,16 +20,6 @@
     :interface "0.0.0.0"
     :port 4005
     :dont-close t))
-
-(defun main ()
-  (let ((args system:*line-arguments-list*))
-    (if (member "-w" args :test #'string=)
-        (start-swank-server)
-        (loop (sleep 60))
-    )))
-
-(push '("Main" nil main)
-      mp:*initial-processes*)    
 
 (load-all-patches)
 
